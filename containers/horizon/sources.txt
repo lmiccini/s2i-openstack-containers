@@ -1,10 +1,10 @@
 # <stream> <name> <repo-url> <branch-to-follow> <pinned-hash>
-master upper-constraints https://opendev.org/openstack/requirements.git master f3766f7905e484780b52145c4c1b56d8ada797ae
-master horizon https://opendev.org/openstack/horizon.git master 949ffdead5a5c5cf9e8202cafef14ec6a5f692f8
-master heat-dashboard https://opendev.org/openstack/heat-dashboard.git master c39223187e4215d309bf03aa36708242bda5d0da
-master ironic-ui https://opendev.org/openstack/ironic-ui.git master bce74adf2fd0969821fe21f3b31cfffe5214b59f
-master manila-ui https://opendev.org/openstack/manila-ui.git master c1f5b0496b9f32e6431fe4ea96af70b8f7b52ab4
-master octavia-dashboard https://opendev.org/openstack/octavia-dashboard.git master 9ed967f597476426773c98f118e5a5025396aaed
-master designate-dashboard https://opendev.org/openstack/designate-dashboard.git master 98a0a76eac11e94e2d6202f417ca8a616f259bac
-master watcher-dashboard https://opendev.org/openstack/watcher-dashboard.git master e0d689b84480c3b1c1777cd26fc7c2a2ec1022ab
-master cloudkitty-dashboard https://opendev.org/openstack/cloudkitty-dashboard.git master b3bbfe061fea8df7607f1f62d188c00f9bb6945f
+master upper-constraints https://opendev.org/openstack/requirements.git master 1239a52f7c6397759a5bd9660495cd4764cd32cb
+master horizon https://opendev.org/openstack/horizon.git master 6620046089acad5036d23c6fcbf1d1b6216696dc
+master heat-dashboard https://opendev.org/openstack/heat-dashboard.git master 4676c9f3066d37434057870dc4fd2598b0175690
+master ironic-ui https://opendev.org/openstack/ironic-ui.git master 457ae742139812034574bca45581ecb6bf4749bc
+master manila-ui https://opendev.org/openstack/manila-ui.git master f4a2a5f87346b260c3f200e838e480e2a20eb1a5
+master octavia-dashboard https://opendev.org/openstack/octavia-dashboard.git master 94ef322b1aa2563f56c83d9db5f7a240f6fd151e
+master designate-dashboard https://opendev.org/openstack/designate-dashboard.git master fc709d7f263d8d66cdb080376ad8e13b60d0cef5
+master watcher-dashboard https://opendev.org/openstack/watcher-dashboard.git master 8a42e0fed4e6707ea6609b09662aa8d98c6ac4f8
+master cloudkitty-dashboard https://opendev.org/openstack/cloudkitty-dashboard.git master 8fed6f251da47b0eb5d904a7bbca696069bce2c5

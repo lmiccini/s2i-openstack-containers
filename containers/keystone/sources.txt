@@ -1,2 +1,2 @@
-master upper-constraints https://opendev.org/openstack/requirements.git master f3766f7905e484780b52145c4c1b56d8ada797ae
-master keystone https://opendev.org/openstack/keystone.git master 16afc813b7e6de727d8a91e065d7824b06e32925
+master upper-constraints https://opendev.org/openstack/requirements.git master 1239a52f7c6397759a5bd9660495cd4764cd32cb
+master keystone https://opendev.org/openstack/keystone.git master c6d3b4ed082f805cd9cfe44b20ef8a9ee7e6ccd9
