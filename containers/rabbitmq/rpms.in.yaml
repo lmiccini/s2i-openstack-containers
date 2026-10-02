@@ -9,5 +9,24 @@ arches:
   - aarch64
 
 packages:
-  - hostname
-  - rabbitmq-server
+  - autoconf
+  - clang
+  - curl
+  - flex
+  - gcc
+  - gcc-c++
+  - gdb
+  - git-core
+  - libxslt
+  - m4
+  - make
+  - ncurses-devel
+  - openssl-devel
+  - patch
+  - python3
+  - rsync
+  - tar
+  - unzip
+  - xmlto
+  - zip
+  - zlib-devel

@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Peter Lemenkov <lemenkov@gmail.com>
+Date: Tue, 21 Jul 2026 12:36:26 +0200
+Subject: [PATCH] Revert "OTP 26 has reached EOL"
+
+This reverts commit 2369b6457b45698b2237640f432af35e1853a62a.
+
+diff --git a/deps/rabbitmq_prelaunch/src/rabbit_prelaunch_erlang_compat.erl b/deps/rabbitmq_prelaunch/src/rabbit_prelaunch_erlang_compat.erl
+index 97b119892e..ebf7126b6e 100644
+--- a/deps/rabbitmq_prelaunch/src/rabbit_prelaunch_erlang_compat.erl
++++ b/deps/rabbitmq_prelaunch/src/rabbit_prelaunch_erlang_compat.erl
+@@ -7,9 +7,9 @@
+ -export([check/1]).
+ 
+ %% minimum Erlang/OTP version supported
+--define(OTP_MINIMUM, "27.0").
++-define(OTP_MINIMUM, "26.0").
+ %% the ERTS version provided by the minimum Erlang/OTP version supported
+--define(ERTS_MINIMUM, "15.0").
++-define(ERTS_MINIMUM, "14.0").
+ 
+ check(_Context) ->
+     ?LOG_DEBUG(

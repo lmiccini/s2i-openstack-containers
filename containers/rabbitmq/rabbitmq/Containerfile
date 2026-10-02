@@ -1,16 +1,49 @@
 ARG BASE_IMAGE=localhost/openstack/openstack-base:latest
+
+# Build RabbitMQ and its Erlang/Elixir toolchain from the pinned source trees
+# in ../src. This stage installs the temporary OS toolchain and build headers.
+FROM ${BASE_IMAGE} AS build
+
+ARG RABBITMQ_VERSION=4.2.9
+ARG OTP_VERSION=26.2.5.21
+ARG ELIXIR_VERSION=1.19.6
+ARG BUILD_JOBS=4
+
+COPY src/ /src/
+COPY rabbitmq/rabbitmq-server_4.2.9.orig.tar.xz /tmp/rabbitmq-server_4.2.9.orig.tar.xz
+COPY builddeps.txt /tmp/builddeps.txt
+RUN pkgs=$(grep -vE '^(#|$)' /tmp/builddeps.txt | tr '\n' ' ') && \
+    if [ -n "${pkgs}" ]; then microdnf -y install ${pkgs} && microdnf clean all && rm -rf /var/cache/dnf; fi && \
+    rm -f /tmp/builddeps.txt
+
+COPY rabbitmq/build-rabbitmq.sh /tmp/build-rabbitmq.sh
+COPY rabbitmq/patches/ /patches/
+RUN RABBITMQ_VERSION="${RABBITMQ_VERSION}" \
+    OTP_VERSION="${OTP_VERSION}" \
+    ELIXIR_VERSION="${ELIXIR_VERSION}" \
+    BUILD_JOBS="${BUILD_JOBS}" \
+    sh /tmp/build-rabbitmq.sh
+
+# --- Runtime stage ---
 FROM ${BASE_IMAGE}
 
 LABEL summary="OpenStack RabbitMQ" \
-      io.k8s.description="RabbitMQ messaging service for OpenStack"
+      io.k8s.description="RabbitMQ built from source with a source-built Erlang/OTP runtime"
 
-RUN uid_gid_manage rabbitmq
+RUN uid_gid_manage rabbitmq && rm -f /etc/rabbitmq/rabbitmq.conf
 
-COPY rabbitmq/bindeps.txt /tmp/bindeps.txt
-RUN pkgs=$(cat /tmp/bindeps.txt | grep -v '^#' | grep -v '^$' | tr '\n' ' ') && \
-    if [ -n "${pkgs}" ]; then microdnf -y install ${pkgs} && microdnf clean all && rm -rf /var/cache/dnf; fi && \
-    rm /tmp/bindeps.txt && \
-    rm -f /etc/rabbitmq/rabbitmq.conf
+# Erlang/OTP and RabbitMQ are the only application runtimes copied into the
+# final image. Elixir is build-only; it is used to compile RabbitMQ's CLI.
+COPY --from=build /opt/erlang/ /opt/erlang/
+COPY --from=build /rabbitmq-install/usr/lib/rabbitmq/ /usr/lib/rabbitmq/
+COPY --from=build /rabbitmq-install/usr/sbin/ /usr/sbin/
+
+ENV PATH="/opt/erlang/bin:/opt/erlang/lib/erlang/bin:${PATH}"
+
+RUN mkdir -p /etc/rabbitmq /var/lib/rabbitmq/mnesia /var/log/rabbitmq /var/run/rabbitmq && \
+    chown -R rabbitmq:rabbitmq /etc/rabbitmq /var/lib/rabbitmq /var/log/rabbitmq /var/run/rabbitmq && \
+    chmod 0755 /etc/rabbitmq /var/run/rabbitmq && \
+    chmod 0750 /var/lib/rabbitmq /var/log/rabbitmq
 
 USER rabbitmq
 

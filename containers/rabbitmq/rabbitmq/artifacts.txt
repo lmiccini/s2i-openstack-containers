@@ -1,0 +1,3 @@
+# Complete upstream release source tree used by the CentOS SIG build.
+# It bundles Erlang.mk dependencies such as rabbit_common and thoas.
+rabbitmq-server_4.2.9.orig.tar.xz dde9c2faf0d071087d58c28fa5e7f18f0718053c4b7a126f9417e68b19c51084 https://github.com/rabbitmq/rabbitmq-server/releases/download/v4.2.9/rabbitmq-server_4.2.9.orig.tar.xz

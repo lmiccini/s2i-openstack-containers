@@ -1,0 +1,24 @@
+# Native build toolchain and headers for source-building OTP and RabbitMQ.
+# OpenSSL, ncurses and zlib are linked from the base image at runtime.
+autoconf
+clang
+curl
+flex
+gdb
+gcc
+gcc-c++
+git-core
+libxslt
+make
+m4
+ncurses-devel
+openssl-devel
+patch
+python3
+rsync
+tar
+unzip
+xmlto
+xz
+zip
+zlib-devel

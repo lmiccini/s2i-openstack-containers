@@ -1,0 +1,7 @@
+# Source pins match the CentOS Messaging SIG c10s RabbitMQ, Erlang/OTP, and
+# Elixir source builds. Keep tags aligned with the Containerfile arguments.
+# RabbitMQ is built from the complete release archive in rabbitmq/artifacts.txt;
+# this Git pin records the archive's corresponding upstream tag and commit.
+master rabbitmq https://github.com/rabbitmq/rabbitmq-server.git v4.2.9 47d6d6457c7d1a440daed643cb7d76bba313e79c -
+master otp https://github.com/erlang/otp.git OTP-26.2.5.21 c9ce879f4ca194adc5393f52b2c4cd57b3c3d89d -
+master elixir https://github.com/elixir-lang/elixir.git v1.19.6 915d6dca16268e17605aaeb96ed5a1484f440703 -
